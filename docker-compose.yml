@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  nginx-php:
+    image: richarvey/nginx-php-fpm
+    environment:
+      SKIP_COMPOSER: "true"
+    ports:
+    - "80:80"
+    volumes:
+      - .:/var/www/html
