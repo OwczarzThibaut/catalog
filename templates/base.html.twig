@@ -3,10 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand" href="{{ path('home') }}">Home</a>
+            {% block cart %}
+            <div class="cart">
+                <div>
+                    {{ 'app.cart.nb_products'|trans }} {{ cart.getNumberItems() }}
+                </div>
+                <div>
+                    {{ 'app.cart.total_cost'|trans }} {{ cart.getPriceCart() }}
+                </div>
+                <div>
+                    <a href="{{ path('cart') }}">{{ 'app.btn.see_cart'|trans }}</a>
+                </div>
+            </div>
+            {% endblock %}
+        </nav>
         {% block body %}{% endblock %}
+        <script src="{{ asset('build/app.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

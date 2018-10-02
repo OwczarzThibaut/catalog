@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    {% for orderItem in cart.getItems() %}
+        <div class="product card"> 
+            <div class="card-body">
+                <h5 class="card-title">{{ orderItem.getProduct().nom }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ orderItem.getProduct().prix|number_format(2, ',', ' ') }} {{ 'app.default.currency'|trans }}</h6>
+                <p class="card-text">
+                    {{ orderItem.getProduct().description }}
+                    <div>Quantité : {{ orderItem.getQuantity() }}</div>
+            		<div>Total : {{ orderItem.getPrice() }} {{ 'app.default.currency'|trans }}</div>
+                </p>
+                <a href="{{ path('productView', {'id' : orderItem.getProduct().id}) }}" class="btn btn-primary">{{ 'app.btn.see_product'|trans }}</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div>
+        <a href="{{ path('reset_cart') }}">{{ 'app.cart.btn.reset'|trans }}</a>
+    </div>
+    
+</div>
+{% endblock %}
