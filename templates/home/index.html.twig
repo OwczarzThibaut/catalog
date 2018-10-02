@@ -10,13 +10,14 @@
     <div class="container">
     {% for product in products %}
         <div class="product card"> 
+            <img class="card-img-top imgage-product" src="{{ product.getImage() }}" alt="Card image cap" style="width: auto;">
             <div class="card-body">
                 <h5 class="card-title">{{ product.nom }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ product.prix|number_format(2, ',', ' ') }} {{ 'app.default.currency'|trans }}</h6>
                 <p class="card-text">
                     {{ product.description }}
                 </p>
-                <a href="{{ path('productView', {'id' : product.id}) }}" class="btn btn-primary">{{ 'app.btn.see_product'|trans }}</a>
+                <a href="{{ path('productView', {'slug' : product.getSlug()}) }}" class="btn btn-primary">{{ 'app.btn.see_product'|trans }}</a>
             </div>
         </div>
     {% endfor %}

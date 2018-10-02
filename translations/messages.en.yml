@@ -1,0 +1,22 @@
+app:
+  default:
+    currency: €
+  btn:
+    see_product: See product
+    see_cart: See cart
+    home: Home
+  cart:
+    nb_products: Number products
+    total_cost: Total cost
+    btn:
+      add_item: Add to cart
+      remove_item: Remove to cart
+      update_item: Update quantity to cart
+      reset: Delete all cart
+
+
+action.edit: Edit
+action.delete: Delete
+action.new: New
+action.search: Search
+list.page_title: Product

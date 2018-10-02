@@ -8,7 +8,7 @@
     </head>
     <body>
         <nav class="navbar navbar-light bg-light">
-          <a class="navbar-brand" href="{{ path('home') }}">Home</a>
+          <a class="navbar-brand" href="{{ path('home') }}">{{ 'app.btn.home' |trans }}</a>
             {% block cart %}
             <div class="cart">
                 <div>
@@ -22,6 +22,10 @@
                 </div>
             </div>
             {% endblock %}
+
+            <ul class="text-right">
+                {{ i18n_links() }}
+            </ul>
         </nav>
         {% block body %}{% endblock %}
         <script src="{{ asset('build/app.js') }}"></script>

@@ -4,8 +4,9 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'fr'
+    locale: 'en'
     max_homepage_products: 12
+    allowed_locales: fr|en
 
 services:
     # default configuration for services in *this* file
@@ -27,6 +28,13 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\EventListener\PreferredLocaleListener:
+        $localesPattern: '%allowed_locales%'
+
+    App\Twig\AppExtension:
+        $allowedLocales: '%allowed_locales%'
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

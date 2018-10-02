@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class ProductController extends HomeController
 {
     /**
-     * @Route("/product/{id}", name="productView")
+     * @Route("/product/{slug}", name="productView")
      */
-    public function productView(int $id, ProductRepository $productRepository, SessionInterface $session): Response
+    public function productView(string $slug, ProductRepository $productRepository, SessionInterface $session): Response
     {
-        $product = $productRepository->findOneById($id);
+        $product = $productRepository->findOneBySlug($slug);
         return $this->render('product/index.html.twig', [
             'controller_name' => 'ProductController',
             'product' => $product,

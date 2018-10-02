@@ -12,6 +12,7 @@
     <h1>Hello {{ controller_name }}! ✅</h1>
 
     <div class="product card"> 
+        <img class="card-img-top" src="{{ product.getImage() }}" alt="Card image cap" style="width: max-content;">
         <div class="card-body">
             <h5>{{ product.nom }}</h5>
             <p class="card-text">

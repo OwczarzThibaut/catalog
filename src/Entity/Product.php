@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use App\Entity\ProductInterface;
 
 /**
@@ -31,6 +32,17 @@ class Product implements ProductInterface
      * @ORM\Column(type="float")
      */
     private $prix;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(length=255, unique=true)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -71,5 +83,40 @@ class Product implements ProductInterface
         $this->prix = $prix;
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    public function toArray()
+    {
+        $return = [
+            "id" => $this->getId(),
+            "nom" => $this->getNom(),
+            "description" => $this->getDescription(),
+            "image" => $this->getImage(),
+            "slug" => $this->getSlug()
+        ];
+        return $return;
     }
 }

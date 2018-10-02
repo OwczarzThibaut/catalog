@@ -20,4 +20,14 @@ interface ProductInterface
     public function getPrix();
 
     public function setPrix(float $prix);
+
+    public function getImage();
+
+    public function setImage(string $image);
+    
+    public function getSlug();
+
+    public function setSlug(string $slug);
+
+    public function toArray();
 }

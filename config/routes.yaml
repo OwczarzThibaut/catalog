@@ -1,3 +1,13 @@
 index:
-   path: /
-   controller: App\Controller\HomeController::index
+  path: /
+  defaults:
+      _controller: FrameworkBundle:Redirect:urlRedirect
+      path: '/%locale%'
+      permanent: true
+
+app:
+    resource: '../src/Controller/'
+    type: annotation
+    prefix: '/{_locale}'
+    requirements:
+        _locale: '%allowed_locales%'

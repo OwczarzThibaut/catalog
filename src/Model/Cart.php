@@ -5,6 +5,7 @@ namespace App\Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Model\CartInterface;
 use App\Model\OrderItemInterface;
+use App\Entity\ProductInterface;
 
 /**
  * Cart
@@ -81,6 +82,16 @@ class Cart implements CartInterface
             }
         }
         return $this;
+    }
+
+    public function getItemByProduct(ProductInterface $product): ?OrderItemInterface
+    {
+        foreach ($this->getItems() as $item) {
+            if ($item->getProduct() == $product) {
+                return $item;
+            }
+        }
+        return null;
     }
 
     public function resetCart()

@@ -9,5 +9,14 @@ app:
     nb_products: Nombres d'articles
     total_cost: Coût total
     btn:
-      addItem: Ajouter au panier
+      add_item: Ajouter au panier
+      remove_item: Enlever du panier
+      update_item: Mettre à jours la quantité
       reset: Supprimer mon panier
+
+
+action.edit: Edition
+action.delete: Supprimer
+action.new: Ajouter
+action.search: Rechercher
+list.page_title: Product

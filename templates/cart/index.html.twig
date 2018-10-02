@@ -13,6 +13,7 @@
 
     {% for orderItem in cart.getItems() %}
         <div class="product card"> 
+            <img class="card-img-top imgage-product" src="{{ orderItem.getProduct().getImage() }}" alt="Card image cap" style="width: max-content;">
             <div class="card-body">
                 <h5 class="card-title">{{ orderItem.getProduct().nom }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ orderItem.getProduct().prix|number_format(2, ',', ' ') }} {{ 'app.default.currency'|trans }}</h6>
@@ -21,7 +22,10 @@
                     <div>Quantité : {{ orderItem.getQuantity() }}</div>
             		<div>Total : {{ orderItem.getPrice() }} {{ 'app.default.currency'|trans }}</div>
                 </p>
-                <a href="{{ path('productView', {'id' : orderItem.getProduct().id}) }}" class="btn btn-primary">{{ 'app.btn.see_product'|trans }}</a>
+                {{ render(controller('App\\Controller\\CartController::OrderItemQuantityForm', {'id' : orderItem.getProduct().id, 'quantity': orderItem.getQuantity()})) }}
+
+                <a href="{{ path('productView', {'slug' : orderItem.getProduct().getSlug()}) }}" class="btn btn-primary">{{ 'app.btn.see_product'|trans }}</a>
+                <a href="{{ path('remove_cart', {'id' : orderItem.getProduct().getId()}) }}" class="btn btn-danger">{{ 'app.cart.btn.remove_item'|trans }}</a>
             </div>
         </div>
     {% endfor %}

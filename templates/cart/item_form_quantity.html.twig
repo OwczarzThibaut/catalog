@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+<fieldset>
+    {{ form_widget(form.quantity) }}
+    {{ form_widget(form.product, { 'attr': {'class': 'd-none'}}) }}
+    {{ form_widget(form.submit) }}
+</fieldset>
+{{ form_end(form) }}

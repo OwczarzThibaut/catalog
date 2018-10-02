@@ -13,7 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class OrderItemType extends AbstractType
+class OrderItemQuantityType extends AbstractType
 {
     protected $urlGenerator;
     public function __construct(UrlGeneratorInterface $urlGenerator)
@@ -27,13 +27,12 @@ class OrderItemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->setAction($this->urlGenerator->generate('add_cart'))
+            ->setAction($this->urlGenerator->generate('update_cart_quantity'))
             ->add(
                 'quantity',
                 integerType::class,
                 [
-                    'required' => true,
-                    'data' => 1
+                    'required' => true
                 ]
             )
             ->add(
@@ -48,7 +47,7 @@ class OrderItemType extends AbstractType
             ->add(
                 'submit',
                 SubmitType::class,
-                ['label' => 'app.cart.btn.add_item']
+                ['label' => 'app.cart.btn.update_item']
             );
     }
 

@@ -16,7 +16,8 @@ class Catalog extends Fixture
             $product
                 ->setNom($item['nom'])
                 ->setDescription($item['description'])
-                ->setPrix($item['prix']);
+                ->setPrix($item['prix'])
+                ->setImage($item['image']);
             $manager->persist($product);
         }
 
@@ -34,6 +35,8 @@ class Catalog extends Fixture
 
     protected function getOneFixture()
     {
+        $images = $this->getImages();
+        $image = $images[rand(0, count($images)-1)];
         $randstring = substr(md5(rand()), 0, 7);
         $nom = "Fixture ".$randstring;
         $description = "Description de la ".$nom;
@@ -41,7 +44,19 @@ class Catalog extends Fixture
         return [
             "nom" => $nom,
             "description" => $description,
-            "prix" => $prix
+            "prix" => $prix,
+            "image" => $image
+        ];
+    }
+
+    protected function getImages()
+    {
+        return [
+            "https://www.souffledor.fr/themes/indd/assets/img/default_image.jpg",
+            "https://nato-pa.int/sites/default/files/default_images/default-image.jpg",
+            "https://www.nesta.fr/media/catalog/product/cache/1/small_image/504x504/9df78eab33525d08d6e5fb8d27136e95/placeholder/default/default-img-prod-300.jpg",
+            "https://www.kskscollectibles.com/skin/frontend/default/sns_xsport/images/catalog/product/placeholder/image.jpg",
+            "https://www.boutique-cuir.fr/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/placeholder/default/np_more_img.gif"
         ];
     }
 }
