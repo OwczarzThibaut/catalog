@@ -17,12 +17,12 @@ class HomeControllerTest extends WebTestCase
     {
         $client = static::createClient([],['HTTP_HOST' => 'localhost:8000']);
 
-        $client->request('GET', '/');
+        $client->request('GET', '/fr/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         
         $container = self::$container;
         $nbProducts = $container->getParameter('max_homepage_products');
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/fr/');
 
         $this->assertEquals($nbProducts,  $crawler->filter('div.product')->count());
     }

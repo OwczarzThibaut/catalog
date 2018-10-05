@@ -19,6 +19,15 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('nom' => 'ASC'));
+    }
+
+    public function findOneBySlug($slug)
+    {
+        return $this->findOneBy(["slug" => $slug]);
+    }
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

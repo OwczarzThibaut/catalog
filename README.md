@@ -11,8 +11,10 @@ Test Application Catalogue de produits et gestion de panier Basique sous Symfony
 ## Install
 
     composer install
-    bin/console doctrine:database:create
-    bin/console doctrine:schema:create
+    Rmplacer dans le fichier .env par les bon parametres pour la base de donnée et ses connexions
+    php bin/console doctrine:database:create
+    php bin/console doctrine:schema:create
+    php bin/console doctrine:migrations:migrate
     yarn install
     yarn build
 
@@ -31,4 +33,11 @@ Test Application Catalogue de produits et gestion de panier Basique sous Symfony
 
 ## Test Unitaires et fonctionnel
 
+	 Rmplacer dans le fichier phpunit.xml.dist par les bon parametres pour la base de donnée et ses connexions
 	* Run php bin/phpunit
+
+
+
+## TODO
+	Finish test code for Controllers, using Form
+	I comment ProductControllerTest because no time for finish it

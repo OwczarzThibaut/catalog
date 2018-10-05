@@ -17,9 +17,13 @@ class Cart implements CartInterface
      */
     protected $items;
 
-    public function setItems(ArrayCollection $items): self
+    public function setItems(ArrayCollection $cartItems): self
     {
-        $this->items = $items;
+        foreach ($cartItems as $cartItem) {
+            if ($cartItem instanceof OrderItemInterface) {
+                $this->addItem($cartItem);
+            }
+        }
         return $this;
     }
     
@@ -69,15 +73,13 @@ class Cart implements CartInterface
 
     public function removeItem(OrderItemInterface $orderItem): self
     {
-        if ($this->getItems()->contains($orderItem) === true) {
-            $items = $this->getItems();
-            foreach ($items as $item) {
-                if ($item->getProduct() == $orderItem->getProduct()) {
-                    $this->getItems()->removeElement($item);
-                    $item->removeQuantity($orderItem->getQuantity());
-                    if ($item->getQuantity() > 0) {
-                        $this->getItems()->add($item);
-                    }
+        $items = $this->getItems();
+        foreach ($items as $item) {
+            if ($item->getProduct() == $orderItem->getProduct()) {
+                $this->getItems()->removeElement($item);
+                $item->removeQuantity($orderItem->getQuantity());
+                if ($item->getQuantity() > 0) {
+                    $this->getItems()->add($item);
                 }
             }
         }
