@@ -39,5 +39,5 @@ Test Application Catalogue de produits et gestion de panier Basique sous Symfony
 
 
 ## TODO
-	Finish test code for Controllers, using Form
-	I comment ProductControllerTest because no time for finish it
+	Finir les test fonctionnels sur les Controllers afin de vérfier les formulaires et les pages
+	J'ai commenté le ProductControllerTest, car il me manque du temps pour continuer sur cette partie par rapport a l'envoie avans 12h.
